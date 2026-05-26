@@ -1,0 +1,208 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="3480" viewBox="0 0 1080 3480" role="img" aria-labelledby="title desc">
+  <title id="title">AI video pipeline — mobile</title>
+  <desc id="desc">Мобильная версия инфографики AI video pipeline в тёмном минималистичном стиле.</desc>
+  <defs>
+    <style>
+      .bg{fill:#000000;}
+      .white{fill:#ffffff;}
+      .gray{fill:#8a8a8a;}
+      .accent-fill{fill:#cbfe4e;}
+      .accent-stroke{stroke:#cbfe4e;}
+      .thin{stroke-width:3;}
+      .mid{stroke-width:4;}
+      .thick{stroke-width:5;}
+      .round{stroke-linecap:round;stroke-linejoin:round;}
+      text{font-family:Inter, Arial, Helvetica, sans-serif;}
+      .title{font-size:34px;font-weight:400;letter-spacing:-0.02em;}
+      .intro-title{font-size:42px;font-weight:700;letter-spacing:-0.03em;}
+      .intro-body{font-size:28px;font-weight:400;}
+      .section-title{font-size:30px;font-weight:700;letter-spacing:-0.02em;}
+      .num{font-size:36px;font-weight:700;}
+      .step-title{font-size:40px;font-weight:700;letter-spacing:-0.03em;}
+      .label{font-size:22px;font-weight:700;}
+      .body{font-size:23px;font-weight:400;}
+      .result-title{font-size:44px;font-weight:700;letter-spacing:-0.03em;}
+      .result-body{font-size:25px;font-weight:400;}
+    </style>
+    <marker id="arrowDown" viewBox="0 0 10 10" refX="5" refY="8.5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M0,0 L10,0 L5,10 Z" fill="#cbfe4e"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1080" height="3480"/>
+
+  <text class="white title" x="72" y="90">AI video pipeline</text>
+  <line class="accent-stroke thick round" x1="72" y1="120" x2="122" y2="120"/>
+
+  <!-- Intro blocks -->
+  <g transform="translate(72,190)">
+    <line class="accent-stroke mid round" x1="0" y1="0" x2="0" y2="250"/>
+    <text class="white intro-title" x="34" y="46">Задача</text>
+    <text class="gray intro-body" x="34" y="108">
+      <tspan x="34" dy="0">Задача: Повторяемый</tspan>
+      <tspan x="34" dy="38">YouTube-формат: разные</tspan>
+      <tspan x="34" dy="38">персонажи, одна структура,</tspan>
+      <tspan x="34" dy="38">быстрый выпуск контента.</tspan>
+    </text>
+  </g>
+
+  <g transform="translate(72,510)">
+    <line class="accent-stroke mid round" x1="0" y1="0" x2="0" y2="250"/>
+    <text class="white intro-title" x="34" y="46">Проблема</text>
+    <text class="gray intro-body" x="34" y="108">
+      <tspan x="34" dy="0">AI-видео превращается</tspan>
+      <tspan x="34" dy="38">в визуальный шум.</tspan>
+      <tspan x="34" dy="38">Прописывать и контролировать</tspan>
+      <tspan x="34" dy="38">300+ промптов долго.</tspan>
+    </text>
+  </g>
+
+  <g transform="translate(72,830)">
+    <line class="accent-stroke mid round" x1="0" y1="0" x2="0" y2="292"/>
+    <text class="white intro-title" x="34" y="46">Ключевое решение</text>
+    <text class="gray intro-body" x="34" y="108">
+      <tspan x="34" dy="0">Человек пишет только идею.</tspan>
+      <tspan x="34" dy="38">Я спроектировал цепочку</tspan>
+      <tspan x="34" dy="38">системных промптов так,</tspan>
+      <tspan x="34" dy="38">чтобы каждый шаг выдавал</tspan>
+      <tspan x="34" dy="38">ровно то, что нужно следующему —</tspan>
+      <tspan x="34" dy="38">не больше.</tspan>
+    </text>
+  </g>
+
+  <text class="white section-title" x="72" y="1228">Pipeline</text>
+  <line class="accent-stroke thick round" x1="72" y1="1254" x2="128" y2="1254"/>
+
+  <!-- Step 1 -->
+  <g transform="translate(72,1320)">
+    <g transform="translate(22,70) scale(0.66)" fill="none" class="accent-stroke thick round">
+      <path d="M37 10c-20 0-35 15-35 34 0 13 7 22 15 30 5 5 6 10 6 17h28c0-7 1-12 6-17 8-8 15-17 15-30 0-19-15-34-35-34z"/>
+      <line x1="25" y1="98" x2="49" y2="98"/>
+      <line x1="28" y1="108" x2="46" y2="108"/>
+      <line x1="37" y1="0" x2="37" y2="-12"/>
+      <line x1="-10" y1="44" x2="2" y2="44"/>
+      <line x1="72" y1="44" x2="84" y2="44"/>
+      <line x1="4" y1="11" x2="-6" y2="1"/>
+      <line x1="70" y1="11" x2="80" y2="1"/>
+    </g>
+    <text class="white step-title" x="176" y="58">1] Идея</text>
+    <text class="white label" x="176" y="112">Что делает:</text>
+    <text class="gray body" x="176" y="148">Единственная точка входа.</text>
+    <text class="white label" x="176" y="200">Зачем нужен:</text>
+    <text class="gray body" x="176" y="236">Всё остальное автономно.</text>
+  </g>
+
+  <!-- Step 2 -->
+  <g transform="translate(72,1620)">
+    <g transform="translate(2,78) scale(0.82)" fill="none" class="accent-stroke thick round">
+      <path d="M0 0c20-8 43-6 62 7v58c-19-13-42-15-62-7z"/>
+      <path d="M62 7c19-13 42-15 62-7v58c-20-8-43-6-62 7z"/>
+      <line x1="62" y1="7" x2="62" y2="65"/>
+      <line x1="16" y1="17" x2="47" y2="24"/>
+      <line x1="16" y1="33" x2="47" y2="40"/>
+      <line x1="78" y1="24" x2="110" y2="17"/>
+      <line x1="78" y1="40" x2="110" y2="33"/>
+    </g>
+    <text class="white step-title" x="176" y="58">2] Библия проекта</text>
+    <text class="white label" x="176" y="112">Что делает:</text>
+    <text class="gray body" x="176" y="148">Фиксирует правила мира.</text>
+    <text class="white label" x="176" y="200">Зачем нужен:</text>
+    <text class="gray body" x="176" y="236">
+      <tspan x="176" dy="0">Чтобы все шаги работали</tspan>
+      <tspan x="176" dy="32">в одном контексте.</tspan>
+    </text>
+  </g>
+
+  <!-- Step 3 -->
+  <g transform="translate(72,1920)">
+    <path d="M12 132H48L60 82L88 172L110 132H146" fill="none" class="accent-stroke thick round"/>
+    <text class="white step-title" x="176" y="58">3] Бит-шит</text>
+    <text class="white label" x="176" y="112">Что делает:</text>
+    <text class="gray body" x="176" y="148">Переводит эмоции в действия.</text>
+    <text class="white label" x="176" y="200">Зачем нужен:</text>
+    <text class="gray body" x="176" y="236">Потому что камера не снимает мысли.</text>
+  </g>
+
+  <!-- Step 4 -->
+  <g transform="translate(72,2220)">
+    <g transform="translate(18,78) scale(0.92)" fill="none" class="accent-stroke thick round">
+      <rect x="0" y="0" width="72" height="70" rx="4"/>
+      <rect x="14" y="14" width="22" height="22"/>
+      <line x1="46" y1="16" x2="61" y2="16"/>
+      <line x1="46" y1="31" x2="61" y2="31"/>
+      <line x1="14" y1="50" x2="60" y2="50"/>
+      <line x1="14" y1="60" x2="50" y2="60"/>
+    </g>
+    <text class="white step-title" x="176" y="58">4] Сценарий</text>
+    <text class="white label" x="176" y="112">Что делает:</text>
+    <text class="gray body" x="176" y="148">
+      <tspan x="176" dy="0">Определяет, как показать</tspan>
+      <tspan x="176" dy="32">происходящее.</tspan>
+    </text>
+    <text class="white label" x="176" y="232">Зачем нужен:</text>
+    <text class="gray body" x="176" y="268">
+      <tspan x="176" dy="0">Решает не что происходит,</tspan>
+      <tspan x="176" dy="32">а как это показать.</tspan>
+    </text>
+  </g>
+
+  <!-- Step 5 -->
+  <g transform="translate(72,2550)">
+    <g transform="translate(14,90) scale(0.96)" fill="none" class="accent-stroke thick round">
+      <line x1="0" y1="0" x2="72" y2="0"/>
+      <circle cx="23" cy="0" r="8"/>
+      <line x1="0" y1="24" x2="72" y2="24"/>
+      <circle cx="48" cy="24" r="8"/>
+      <line x1="0" y1="48" x2="72" y2="48"/>
+      <circle cx="22" cy="48" r="8"/>
+    </g>
+    <text class="white step-title" x="176" y="58">5] Видеопромпты</text>
+    <text class="white label" x="176" y="112">Что делает:</text>
+    <text class="gray body" x="176" y="148">
+      <tspan x="176" dy="0">Создаёт точные инструкции</tspan>
+      <tspan x="176" dy="32">для модели.</tspan>
+    </text>
+    <text class="white label" x="176" y="232">Зачем нужен:</text>
+    <text class="gray body" x="176" y="268">
+      <tspan x="176" dy="0">Иначе модель интерпретирует</tspan>
+      <tspan x="176" dy="32">по-своему.</tspan>
+    </text>
+  </g>
+
+  <!-- Step 6 -->
+  <g transform="translate(72,2880)">
+    <g transform="translate(10,70)" class="accent-stroke thick round">
+      <circle cx="54" cy="54" r="44" fill="none"/>
+      <path d="M44 32L44 76L78 54Z" class="accent-fill" stroke="none"/>
+    </g>
+    <text class="white step-title" x="176" y="58">6] Генерация</text>
+    <text class="white label" x="176" y="112">Что делает:</text>
+    <text class="gray body" x="176" y="148">Veo 3 · Kling · Seedance.</text>
+    <text class="white label" x="176" y="200">Зачем нужен:</text>
+    <text class="gray body" x="176" y="236">Финальный этап создания видео.</text>
+  </g>
+
+  <!-- Result -->
+  <g transform="translate(72,3190)">
+    <g fill="none" class="accent-stroke thick round">
+      <circle cx="55" cy="55" r="47"/>
+      <circle cx="55" cy="55" r="28"/>
+      <circle cx="55" cy="55" r="9"/>
+      <line x1="55" y1="55" x2="98" y2="20"/>
+    </g>
+    <g class="accent-fill">
+      <path d="M98 20 L130 12 L111 29 Z"/>
+      <path d="M96 20 L112 4 L109 24 Z"/>
+      <path d="M100 21 L122 31 L108 29 Z"/>
+      <path d="M105 27 L132 35 L113 32 Z"/>
+    </g>
+    <line class="accent-stroke thick round" x1="166" y1="0" x2="166" y2="142"/>
+    <text class="white result-title" x="212" y="48">Результат</text>
+    <text class="gray result-body" x="212" y="94">
+      <tspan x="212" dy="0">Конвейер от идеи</tspan>
+      <tspan x="212" dy="34">до видеопромптов</tspan>
+      <tspan x="212" dy="34">без ручного вмешательства</tspan>
+      <tspan x="212" dy="34">на промежуточных шагах.</tspan>
+    </text>
+  </g>
+</svg>
