@@ -200,7 +200,8 @@ function initScrollNarrative() {
   function render() {
     const scrollable = Math.max(section.offsetHeight - window.innerHeight, 1);
     const progress = clamp(-section.getBoundingClientRect().top / scrollable, 0, 1);
-    const cardThresholds = [0.58, 0.68, 0.78, 0.88];
+    const isMobile = window.innerWidth <= 760;
+    const cardThresholds = isMobile ? [0.5, 0.58, 0.66, 0.74] : [0.58, 0.68, 0.78, 0.88];
     const heroOpacity = mapRange(progress, 0.03, 0.27, 1, 0);
     const heroY = mapRange(progress, 0.03, 0.27, 0, -18);
     const introTitleOpacity = mapRange(progress, 0.03, 0.25, 0, 1);
@@ -255,12 +256,12 @@ function initContactScene() {
 
     if (isMobile) {
       return {
-        leftX: [-26, -12],
-        leftY: [9, 4],
-        leftRot: [-34, -28],
-        rightX: [20, 5],
-        rightY: [-5, -1],
-        rightRot: [3, -5]
+        leftX: [6, 20],
+        leftY: [6, 1],
+        leftRot: [-42, -34],
+        rightX: [8, -4],
+        rightY: [-2, 2],
+        rightRot: [-7, -14]
       };
     }
 
@@ -275,7 +276,8 @@ function initContactScene() {
   }
 
   function setContactProgress(progress) {
-    const eased = 1 - Math.pow(1 - progress, 1.12);
+    const isMobile = window.innerWidth <= 760;
+    const eased = 1 - Math.pow(1 - progress, isMobile ? 1.8 : 1.12);
     const motion = getMotionSettings();
 
     section.style.setProperty("--contact-progress", progress.toFixed(3));
@@ -295,10 +297,11 @@ function initContactScene() {
   let ticking = false;
 
   function update() {
+    const isMobile = window.innerWidth <= 760;
     const sectionTop = section.getBoundingClientRect().top + window.scrollY;
     const travel = Math.max(section.offsetHeight - window.innerHeight, 1);
     const rawProgress = clamp((window.scrollY - sectionTop) / travel, 0, 1);
-    const progress = clamp(rawProgress / 0.68, 0, 1);
+    const progress = clamp(rawProgress / (isMobile ? 0.82 : 0.68), 0, 1);
 
     setContactProgress(progress);
     ticking = false;
@@ -326,10 +329,15 @@ function initCaseCards() {
   const modalLink = document.querySelector(".case-modal-link");
   const caseImage = document.querySelector(".case-image-full");
   const caseImageMobile = document.querySelector(".case-image-mobile");
+  const caseImageCta = document.querySelector(".case-image-cta");
+  const storyKicker = document.querySelector(".case-story-kicker");
+  const storyTitle = document.querySelector(".case-story-title");
+  const storyLead = document.querySelector(".case-story-lead");
+  const storySteps = document.querySelector(".case-story-steps");
   const diagramLabels = Array.from(document.querySelectorAll(".case-diagram-label"));
   const closeControls = Array.from(document.querySelectorAll("[data-close-case]"));
 
-  if (!cards.length || !modal || !modalPanel || !modalKicker || !modalTitle || !modalBody || !modalResult || !modalLink || !caseImage || !caseImageMobile) return;
+  if (!cards.length || !modal || !modalPanel || !modalKicker || !modalTitle || !modalBody || !modalResult || !modalLink || !caseImage || !caseImageMobile || !caseImageCta || !storyKicker || !storyTitle || !storyLead || !storySteps) return;
 
   const cases = {
     video: {
@@ -341,7 +349,8 @@ function initCaseCards() {
         "<strong>Решение</strong> — многоступенчатый pipeline в Claude (лучшая модель для написания текста): каждый шаг автоматически передаёт результат следующему. В системный промпт встроены правила кинодраматургии: запрет внутренних состояний которые не может передать камера (ход мыслей, внутренний диалог и т.п.), обязательные эмоциональные перипетии каждые 1-2 минуты для удержания зрителя, правила смены ракурса."
       ],
       result: "<strong>Результат</strong> — конвейер от идеи до промптов без ручных промежуточных шагов.",
-      linkText: "→ Смотреть видео",
+      linkText: "Смотреть видео",
+      linkSubtext: "на youtube",
       linkHref: "https://www.youtube.com/watch?v=yAEgqdsTZuI",
       diagram: ["Ниша", "Формат", "Библия", "Бит-шит", "Сценарий", "Промпты"],
       image: {
@@ -378,26 +387,79 @@ function initCaseCards() {
       diagram: ["Таблица", "Python", "OpenAI API", "Ответы", "Telegram", "Планирование"]
     },
     marketing: {
-      kicker: "Marketing · Готово",
-      title: "VK Ads для beauty-проекта",
-      body: [
-        "Разработал позиционирование, написал тексты, создал визуальные креативы с помощью AI, запустил рекламные кампании в VK Ads.",
-        "Дополнительно — сгенерировал оригинальный музыкальный трек и клип."
+      kicker: "Beauty automation",
+      title: "Сайт + CRM",
+      lead: [
+        "Задача — сайт собирающий лиды в CRM.",
+        "Решение — ChatGPT проектирует сайт, публикует его и помогает собрать CRM-воронку.",
+        "Автоматизация — CRM, чат-бот / Telegram, GPT по API объединяются в одну систему для общения с клиентами."
       ],
-      result: "Результат: +1 500 подписчиков (+75%) за 4 месяца.",
-      linkText: "Материалы — заменить позже",
-      diagram: ["Позиция", "Тексты", "AI-креативы", "VK Ads", "Музыка", "Рост"]
+      result: "Единая система: сайт → лиды → CRM → Telegram → повторные продажи.",
+      linkText: "Перейти на сайт",
+      linkHref: "https://www.косметологи-уфы.рф",
+      story: [
+        {
+          title: "Исследование",
+          image: "./assets/cases/case-4-step-1.webp",
+          alt: "Исследование конкурентов для beauty-проекта",
+          text: "Gemini Deep Research собрал сильные референсы конкурентов."
+        },
+        {
+          title: "Сайт",
+          image: "./assets/cases/case-4-step-2.webp",
+          alt: "Сайт beauty-проекта",
+          text: "GPT 5.5 написал основной HTML/CSS и сам выложил на хостинг."
+        },
+        {
+          title: "Bitrix24 + CRM",
+          image: "./assets/cases/case-4-step-3.webp",
+          alt: "CRM-воронка в Bitrix24",
+          text: "GPT 5.5 собрал по описанию воронку и подключил виджет. Воронка + анти-брошенная корзина + пост-процедурный цикл."
+        },
+        {
+          title: "Лид-магнит",
+          image: "./assets/cases/case-4-step-4.webp",
+          alt: "AI лид-магнит для общения с клиентом",
+          text: "GPT oss-120b, подключённый по API, анализирует диалог с клиентом и ставит AI-тег отталкиваясь от жалоб. Например: прыщи, угри, сыпь = тег «акне». В зависимости от тега в телеграм отправляется лид-магнит."
+        }
+      ]
     },
     "three-d": {
-      kicker: "3D · Готово",
-      title: "Blender MCP + Hunyuan3D",
-      body: [
-        "Интеграция LLM в Blender через MCP — модель получает текстовую инструкцию и автономно редактирует 3D-объект без участия оператора.",
-        "Генерация ассетов через Hunyuan3D с последующей оптимизацией для игрового прототипа."
-      ],
-      result: "Результат: полностью AI-управляемый pipeline создания и оптимизации 3D-моделей.",
-      linkText: "Демо — заменить позже",
-      diagram: ["Инструкция", "Blender MCP", "Правки", "Hunyuan3D", "Оптимизация", "Ассет"]
+      kicker: "3D pipeline",
+      title: "От референса до готовой 3D-модели",
+      lead: "Последовательный pipeline: референс, подготовка, генерация, оптимизация и анимация.",
+      story: [
+        {
+          title: "Выбор референса",
+          image: "./assets/cases/case-5-step-1.webp",
+          alt: "Выбор визуального референса для 3D-модели",
+          text: "Подбираем визуальный референс: фото, концепт-арт или любое изображение, которое станет основой для будущей 3D-модели. На этом этапе важно выбрать чёткий ракурс с хорошей читаемостью формы."
+        },
+        {
+          title: "Подготовка изображения",
+          image: "./assets/cases/case-5-step-2.webp",
+          alt: "Подготовка изображения для генерации 3D-модели",
+          text: "Редактируем референс для корректной работы с генератором: убираем лишний фон, выравниваем освещение, при необходимости дорисовываем недостающие детали. Цель — получить максимально «чистый» источник для точной генерации геометрии."
+        },
+        {
+          title: "Генерация и оптимизация 3D-модели",
+          image: "./assets/cases/case-5-step-3.webp",
+          alt: "Генерация и оптимизация 3D-модели",
+          text: "По подготовленному изображению генерируем 3D-модель. Далее подключаем GPT через MCP-сервер Blender и даём задачу на оптимизацию: снижаем полигональность, чистим топологию, уменьшаем вес файла без потери качества. На выходе — готовая модель, пригодная для:",
+          list: [
+            "веб-анимации и интерактивных сайтов",
+            "рекламных креативов",
+            "анимационных видео",
+            "игровых ассетов"
+          ]
+        },
+        {
+          title: "Анимация",
+          image: "./assets/cases/case-5-step-4.webp",
+          alt: "Финальная анимация готовой 3D-модели",
+          text: "Финальная 3D-модель передаётся в риггинг и анимацию. Результат — живой, движущийся объект, готовый к интеграции в любой продакшн-пайплайн."
+        }
+      ]
     }
   };
 
@@ -415,17 +477,132 @@ function initCaseCards() {
     });
   }
 
+  function renderStory(item) {
+    storyKicker.textContent = item.kicker || "";
+    storyTitle.textContent = item.title;
+    storyLead.textContent = "";
+    const leadItems = Array.isArray(item.lead) ? item.lead : [item.lead].filter(Boolean);
+    leadItems.forEach((leadText) => {
+      const paragraph = document.createElement("p");
+      paragraph.textContent = leadText;
+      storyLead.appendChild(paragraph);
+    });
+    storySteps.textContent = "";
+
+    item.story.forEach((step, index) => {
+      const section = document.createElement("section");
+      section.className = "case-story-step";
+
+      const media = document.createElement("figure");
+      media.className = "case-story-media";
+      const image = document.createElement("img");
+      image.src = step.image;
+      image.alt = step.alt || step.title;
+      media.appendChild(image);
+
+      const copy = document.createElement("div");
+      copy.className = "case-story-copy";
+      const number = document.createElement("span");
+      number.className = "case-story-number";
+      number.textContent = String(index + 1).padStart(2, "0");
+      const title = document.createElement("h3");
+      title.textContent = step.title;
+      const text = document.createElement("p");
+      text.textContent = step.text;
+
+      copy.append(number, title, text);
+
+      if (step.list?.length) {
+        const list = document.createElement("ul");
+        list.className = "case-story-list";
+        step.list.forEach((itemText) => {
+          const listItem = document.createElement("li");
+          listItem.textContent = itemText;
+          list.appendChild(listItem);
+        });
+        copy.appendChild(list);
+      }
+
+      section.append(media, copy);
+      storySteps.appendChild(section);
+    });
+
+    if (item.result) {
+      const result = document.createElement("section");
+      result.className = "case-story-result";
+      const title = document.createElement("h3");
+      title.textContent = "Результат";
+      const text = document.createElement("p");
+      text.textContent = item.result;
+      result.append(title, text);
+
+      if (item.linkHref) {
+        const link = document.createElement("a");
+        link.className = "case-story-link";
+        link.href = item.linkHref;
+        link.target = "_blank";
+        link.rel = "noreferrer";
+        link.textContent = item.linkText || "Посмотреть";
+        result.appendChild(link);
+      }
+
+      storySteps.appendChild(result);
+    }
+  }
+
+  function renderImageCta(item) {
+    caseImageCta.textContent = "";
+
+    const label = document.createElement("span");
+    label.className = "case-image-cta-main";
+    label.textContent = item.linkText || "";
+    caseImageCta.appendChild(label);
+
+    if (item.linkSubtext) {
+      const subtext = document.createElement("span");
+      subtext.className = "case-image-cta-sub";
+      subtext.textContent = item.linkSubtext;
+      caseImageCta.appendChild(subtext);
+    }
+
+    caseImageCta.href = item.linkHref || "#";
+    caseImageCta.classList.toggle("is-visible", Boolean(item.linkHref));
+  }
+
   function openCase(caseId) {
     const item = cases[caseId];
     if (!item) return;
 
+    if (item.story) {
+      modal.classList.remove("is-image-mode");
+      modal.classList.add("is-story-mode");
+      caseImage.removeAttribute("src");
+      caseImage.alt = "";
+      caseImageMobile.removeAttribute("srcset");
+      caseImageCta.classList.remove("is-visible");
+      caseImageCta.textContent = "";
+      caseImageCta.href = "#";
+      storyKicker.textContent = "";
+      renderStory(item);
+      modal.setAttribute("aria-hidden", "false");
+      modal.classList.add("is-open");
+      document.body.classList.add("case-modal-open");
+      return;
+    }
+
     if (item.image) {
+      modal.classList.remove("is-story-mode");
       modal.classList.add("is-image-mode");
       modalPanel.removeAttribute("aria-labelledby");
       modalPanel.removeAttribute("aria-label");
       caseImage.src = item.image.desktop;
       caseImage.alt = item.image.alt;
       caseImageMobile.srcset = item.image.mobile;
+      renderImageCta(item);
+      storyKicker.textContent = "";
+      storyTitle.textContent = "";
+      storyLead.textContent = "";
+      storySteps.textContent = "";
       modal.setAttribute("aria-hidden", "false");
       modal.classList.add("is-open");
       document.body.classList.add("case-modal-open");
@@ -433,9 +610,17 @@ function initCaseCards() {
     }
 
     modal.classList.remove("is-image-mode");
+    modal.classList.remove("is-story-mode");
     caseImage.removeAttribute("src");
     caseImage.alt = "";
     caseImageMobile.removeAttribute("srcset");
+    caseImageCta.classList.remove("is-visible");
+    caseImageCta.textContent = "";
+    caseImageCta.href = "#";
+    storyKicker.textContent = "";
+    storyTitle.textContent = "";
+    storyLead.textContent = "";
+    storySteps.textContent = "";
     modalKicker.textContent = item.kicker;
     modalTitle.textContent = item.title;
     modalTitle.hidden = !item.title;
@@ -462,11 +647,19 @@ function initCaseCards() {
   function closeCase() {
     modal.classList.remove("is-open");
     modal.classList.remove("is-image-mode");
+    modal.classList.remove("is-story-mode");
     modal.setAttribute("aria-hidden", "true");
     document.body.classList.remove("case-modal-open");
     caseImage.removeAttribute("src");
     caseImage.alt = "";
     caseImageMobile.removeAttribute("srcset");
+    caseImageCta.classList.remove("is-visible");
+    caseImageCta.textContent = "";
+    caseImageCta.href = "#";
+    storyKicker.textContent = "";
+    storyTitle.textContent = "";
+    storyLead.textContent = "";
+    storySteps.textContent = "";
   }
 
   cards.forEach((card) => {
