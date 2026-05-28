@@ -165,30 +165,30 @@
       <section class="cases-section" id="cases" aria-label="Кейсы">
         <div class="cases-title-bg" aria-hidden="true">Кейсы</div>
         <div class="case-card-grid">
-          <button class="case-card" type="button" data-case="video" style="--case-rot: -7deg; --case-y: 20px;">
+          <button class="case-card" type="button" data-case="marketing" style="--case-rot: -7deg; --case-y: 20px;">
             <span>Кейс #1</span>
+            <strong>сайт + bitrix24 + Ai для beauty-проекта</strong>
+            <small>Сайт, CRM-воронка и AI-автоматизация для заявок.</small>
+          </button>
+          <button class="case-card" type="button" data-case="video" style="--case-rot: 4deg; --case-y: -10px;">
+            <span>Кейс #2</span>
             <strong>AI video pipeline</strong>
             <small>Автономный конвейер от идеи до видеопромптов.</small>
           </button>
-          <button class="case-card" type="button" data-case="game" style="--case-rot: 4deg; --case-y: -10px;">
-            <span>Кейс #2</span>
+          <button class="case-card" type="button" data-case="three-d" style="--case-rot: -2deg; --case-y: 18px;">
+            <span>Кейс #3</span>
+            <strong>Blender MCP + Hunyuan3D</strong>
+            <small>Референс, подготовка, генерация, оптимизация и анимация.</small>
+          </button>
+          <button class="case-card" type="button" data-case="game" style="--case-rot: 6deg; --case-y: -2px;">
+            <span>Кейс #4</span>
             <strong>Браузерная игра на Three.js</strong>
             <small>Игровой прототип с персонажами, сундуками и логикой.</small>
           </button>
-          <button class="case-card" type="button" data-case="automation" style="--case-rot: -2deg; --case-y: 18px;">
-            <span>Кейс #3</span>
+          <button class="case-card" type="button" data-case="automation" style="--case-rot: -5deg; --case-y: 24px;">
+            <span>Кейс #5</span>
             <strong>Python-автоматизация и Telegram-бот</strong>
             <small>Скрипты и LLM-боты, которые закрывают ручные задачи.</small>
-          </button>
-          <button class="case-card" type="button" data-case="marketing" style="--case-rot: 6deg; --case-y: -2px;">
-            <span>Кейс #4</span>
-            <strong>VK Ads для beauty-проекта</strong>
-            <small>Позиционирование, AI-креативы и рост аудитории.</small>
-          </button>
-          <button class="case-card" type="button" data-case="three-d" style="--case-rot: -5deg; --case-y: 24px;">
-            <span>Кейс #5</span>
-            <strong>Blender MCP + Hunyuan3D</strong>
-            <small>AI-управляемый pipeline создания и оптимизации 3D.</small>
           </button>
         </div>
       </section>
@@ -244,7 +244,17 @@
             <source class="case-image-mobile" media="(max-width: 760px)">
             <img class="case-image-full" alt="">
           </picture>
+          <a class="case-image-cta" href="#" target="_blank" rel="noreferrer"></a>
         </div>
+        <article class="case-story-panel" role="dialog" aria-modal="true" aria-labelledby="case-story-title">
+          <button class="case-modal-close case-story-close" type="button" data-close-case>Закрыть</button>
+          <header class="case-story-header">
+            <p class="case-story-kicker"></p>
+            <h2 id="case-story-title" class="case-story-title"></h2>
+            <p class="case-story-lead"></p>
+          </header>
+          <div class="case-story-steps"></div>
+        </article>
       </div>
 
       <section class="about-section" id="about">
